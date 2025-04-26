@@ -51,8 +51,8 @@ def gameLoop():
 
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
-
-while not game_over:
+    
+    while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
