@@ -53,7 +53,7 @@ def gameLoop():
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
     
     while not game_over:
-    for event in pygame.event.get():
+      for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
         if event.type == pygame.KEYDOWN:
@@ -63,7 +63,7 @@ def gameLoop():
             elif event.key == pygame.K_RIGHT:
                 x1_change = snake_block
                 y1_change = 0
-             elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP:
                 x1_change = -snake_block
                 y1_change = 0
             elif event.key == pygame.K_DOWN:
@@ -120,12 +120,6 @@ while True:
         
 
                     
-
-
-
-
-
-
 
 
 
