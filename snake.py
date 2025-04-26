@@ -37,20 +37,20 @@ def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
 
-    def gameLoop():
-        game_over = False
+def gameLoop():
+    game_over = False
 
-        x1 = dis_width / 2
-        y1 = dis_height / 2
+    x1 = dis_width / 2
+    y1 = dis_height / 2
 
-        x1_change = 0
-        y1_change = 0
+    x1_change = 0
+    y1_change = 0
 
-        snake_list = []
-        leght_of_snake = 1
+    snake_list = []
+    leght_of_snake = 1
 
-        foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
-        foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+    foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+    foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
 
         while not game_over:
             for event in pygame.event.get():
@@ -83,7 +83,7 @@ def message(msg, color):
                 snake_head.append(x1)
                 snake_head.append(y1)
                 snake_list.append(snake_head)
-                if len(snake_list) > leght_of_snake:
+                if len(snake_list) > lenght_of_snake:
                     del snake_list[0]
 
                 for x in snake_list[:-1]:
@@ -105,7 +105,7 @@ def message(msg, color):
     dis.fill(red2)
     message("YOU LOST! YOUR SCORE:" + str(lenght_of_snake - 1), black)
     pygame.display.update()
-    time,sleep(2)
+    time.sleep(2)
 
 while True:
     try:
