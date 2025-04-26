@@ -52,55 +52,55 @@ def gameLoop():
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
 
-        while not game_over:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    game_over = True
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        x1_change = -snake_block
-                        y1_change = 0
-                    elif event.key == pygame.K_RIGHT:
-                        x1_change = snake_block
-                        y1_change = 0
-                    elif event.key == pygame.K_UP:
-                        x1_change = -snake_block
-                        y1_change = 0
-                    elif event.key == pygame.K_DOWN:
-                        x1_change = snake_block
-                        y1_change = 0
+while not game_over:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_over = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x1_change = -snake_block
+                y1_change = 0
+            elif event.key == pygame.K_RIGHT:
+                x1_change = snake_block
+                y1_change = 0
+             elif event.key == pygame.K_UP:
+                x1_change = -snake_block
+                y1_change = 0
+            elif event.key == pygame.K_DOWN:
+                x1_change = snake_block
+                y1_change = 0
 
-            x1 += x1_change
-            y1 += y1_change
+    x1 += x1_change
+    y1 += y1_change
 
-            if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
+    if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
+        game_over = True
+
+    if not game_over:
+        dis.fill(black)
+        pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
+        snake_head = []
+        snake_head.append(x1)
+        snake_head.append(y1)
+        snake_list.append(snake_head)
+        if len(snake_list) > lenght_of_snake:
+            del snake_list[0]
+
+        for x in snake_list[:-1]:
+            if x == snake_head:
                 game_over = True
 
-            if not game_over:
-                dis.fill(black)
-                pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
-                snake_head = []
-                snake_head.append(x1)
-                snake_head.append(y1)
-                snake_list.append(snake_head)
-                if len(snake_list) > lenght_of_snake:
-                    del snake_list[0]
+        our_snake(snake_block, snake_list)
+        Your_score(leght_of_snake -1)
 
-                for x in snake_list[:-1]:
-                    if x == snake_head:
-                        game_over = True
+        pygame.display.update()
 
-                our_snake(snake_block, snake_list)
-                Your_score(leght_of_snake -1)
+        if x1 == foodx and y1 == foody:
+            foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+            foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+            lenght_of_snake += 1
 
-                pygame.display.update()
-
-                if x1 == foodx and y1 == foody:
-                    foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
-                    foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
-                    lenght_of_snake += 1
-
-                clock.tick(snake_speed)
+        clock.tick(snake_speed)
 
     dis.fill(red2)
     message("YOU LOST! YOUR SCORE:" + str(lenght_of_snake - 1), black)
